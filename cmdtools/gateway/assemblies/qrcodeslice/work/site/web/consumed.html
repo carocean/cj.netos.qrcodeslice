@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>地微码片</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/consumed.css">
+    <script src="jquery/jquery.min.js"></script>
+    <script src="jquery/jquery.qrcode.min.js"></script>
+    <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/consumed.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="main-page">
+    <div data-role="header">
+        <h1>地微码片</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <div class="tips">
+            <span>本码片已被消费，请<a gotoPage href="#unconsumes-page">选择</a>其它码片</span>
+        </div>
+    </div>
+
+</div>
+<div data-role="page" id="unconsumes-page">
+    <div data-role="header">
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>未消费码片</h1>
+    </div>
+    <ul data-role="listview" data-theme="a" unconsume-ul>
+        <li><a href="#">
+            <div class="qrcode"></div>
+        </a></li>
+    </ul>
+</div>
+</body>
+</html>

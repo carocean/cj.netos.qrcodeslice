@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cj.netos.qrcodeslice.mapper.AbsorberMapper">
+  <resultMap id="BaseResultMap" type="cj.netos.qrcodeslice.model.Absorber">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="bankid" jdbcType="VARCHAR" property="bankid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="usage" jdbcType="INTEGER" property="usage" />
+    <result column="absorbabler" jdbcType="VARCHAR" property="absorbabler" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="radius" jdbcType="BIGINT" property="radius" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="ctime" jdbcType="VARCHAR" property="ctime" />
+    <result column="max_recipients" jdbcType="BIGINT" property="maxRecipients" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="exit_cause" jdbcType="VARCHAR" property="exitCause" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    id, title, bankid, `type`, `usage`, absorbabler, `location`, radius, creator, ctime, 
+    max_recipients, `state`, exit_cause
+  </sql>
+  <select id="selectByExample" parameterType="cj.netos.qrcodeslice.model.AbsorberExample" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from absorber
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select 
+    <include refid="Base_Column_List" />
+    from absorber
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from absorber
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cj.netos.qrcodeslice.model.AbsorberExample">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from absorber
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cj.netos.qrcodeslice.model.Absorber">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    insert into absorber (id, title, bankid, 
+      `type`, `usage`, absorbabler, 
+      `location`, radius, creator, 
+      ctime, max_recipients, `state`, 
+      exit_cause)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{bankid,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{usage,jdbcType=INTEGER}, #{absorbabler,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{radius,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, 
+      #{ctime,jdbcType=VARCHAR}, #{maxRecipients,jdbcType=BIGINT}, #{state,jdbcType=INTEGER}, 
+      #{exitCause,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cj.netos.qrcodeslice.model.Absorber">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    insert into absorber
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="bankid != null">
+        bankid,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="usage != null">
+        `usage`,
+      </if>
+      <if test="absorbabler != null">
+        absorbabler,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="radius != null">
+        radius,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="maxRecipients != null">
+        max_recipients,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="exitCause != null">
+        exit_cause,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        #{usage,jdbcType=INTEGER},
+      </if>
+      <if test="absorbabler != null">
+        #{absorbabler,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null">
+        #{radius,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRecipients != null">
+        #{maxRecipients,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="exitCause != null">
+        #{exitCause,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cj.netos.qrcodeslice.model.AbsorberExample" resultType="java.lang.Long">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select count(*) from absorber
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update absorber
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankid != null">
+        bankid = #{record.bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.usage != null">
+        `usage` = #{record.usage,jdbcType=INTEGER},
+      </if>
+      <if test="record.absorbabler != null">
+        absorbabler = #{record.absorbabler,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        `location` = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.radius != null">
+        radius = #{record.radius,jdbcType=BIGINT},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxRecipients != null">
+        max_recipients = #{record.maxRecipients,jdbcType=BIGINT},
+      </if>
+      <if test="record.state != null">
+        `state` = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.exitCause != null">
+        exit_cause = #{record.exitCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update absorber
+    set id = #{record.id,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      bankid = #{record.bankid,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER},
+      `usage` = #{record.usage,jdbcType=INTEGER},
+      absorbabler = #{record.absorbabler,jdbcType=VARCHAR},
+      `location` = #{record.location,jdbcType=VARCHAR},
+      radius = #{record.radius,jdbcType=BIGINT},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=VARCHAR},
+      max_recipients = #{record.maxRecipients,jdbcType=BIGINT},
+      `state` = #{record.state,jdbcType=INTEGER},
+      exit_cause = #{record.exitCause,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cj.netos.qrcodeslice.model.Absorber">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update absorber
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        bankid = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="usage != null">
+        `usage` = #{usage,jdbcType=INTEGER},
+      </if>
+      <if test="absorbabler != null">
+        absorbabler = #{absorbabler,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="radius != null">
+        radius = #{radius,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRecipients != null">
+        max_recipients = #{maxRecipients,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="exitCause != null">
+        exit_cause = #{exitCause,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cj.netos.qrcodeslice.model.Absorber">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update absorber
+    set title = #{title,jdbcType=VARCHAR},
+      bankid = #{bankid,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `usage` = #{usage,jdbcType=INTEGER},
+      absorbabler = #{absorbabler,jdbcType=VARCHAR},
+      `location` = #{location,jdbcType=VARCHAR},
+      radius = #{radius,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=VARCHAR},
+      max_recipients = #{maxRecipients,jdbcType=BIGINT},
+      `state` = #{state,jdbcType=INTEGER},
+      exit_cause = #{exitCause,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="totalCatCount" parameterType="java.lang.String" resultType="java.lang.Long">
+    select count(*)
+    from absorber
+    where state=1
+      and id in (select distinct rec.absorber
+                 from recipients rec
+                 where encourage_code='balance'
+                   and encourage_by=#{qrsliceId})
+  </select>
+  <select id="listCats" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from absorber
+    where state=1
+      and id in (select distinct rec.absorber
+                 from recipients rec
+                 where encourage_code='balance'
+                   and encourage_by=#{qrsliceId})
+  </select>
+</mapper>

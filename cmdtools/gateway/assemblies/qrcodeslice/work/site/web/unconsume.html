@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>地微码片</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0">
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/unconsume.css">
+    <script src="jquery/jquery.min.js"></script>
+    <script src="jquery/jquery.qrcode.min.js"></script>
+    <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/unconsume.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="home">
+    <div data-role="header">
+        <h1>地微码片</h1>
+        <a href="#balance-details" data-transition="slideup" class="ui-btn ui-btn-right ui-corner-all ">明细</a>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <div class="publisher">
+            <img
+                    src="http://47.105.165.186:7100/avatars/340633c71cfa5ba2e17887e551b02363.jpeg?accessToken=3887076A0158168DFF3A7C63C11CFDB2"
+                    class="ui-li-icon" data-theme="f">
+            <ul>
+                <li name>狗丢儿</li>
+                <li label>93993</li>
+            </ul>
+        </div>
+        <div class="balance">
+            <p class="balance-label">当前余额</p>
+            <p class="balance-amount">¥23.238838383</p>
+        </div>
+        <div class="slice-info">
+            <ul data-role="listview" data-theme="a">
+                <li totalCats><a href="#cat-page" data-transition="slideup">招财猫<span></span></a></li>
+                <li unconsumeCount><a href="#unconsumes-page">未消费码片
+                    <span>赶快抢</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="rank-top">
+        <span>洇取排行榜</span>
+        <ul data-role="listview" data-theme="a" rank-ul>
+            <li><img
+                    src="#"
+                    class="ui-li-icon" data-theme="f"><i></i><span>¥123.2344343</span></li>
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed" style="text-align:center;">
+        <a href="#doConsume-page"
+           class="ui-btn ui-btn-e ui-corner-all ui-shadow ui-icon-arrow-r ui-btn-icon-left">消费</a>
+    </div>
+</div>
+<div data-role="page" id="balance-details">
+    <div data-role="header">
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>余额明细</h1>
+    </div>
+    <div data-role="pannel">
+        <span>¥3.239393999393</span>
+    </div>
+    <ul rbalance-ul>
+        <li><img
+                src="img/cat-grey.png">
+            <ul recipient>
+                <li name>某某猫</li>
+            </ul>
+            <ul amount>
+                <li amount><span>¥123.2344343</span></li>
+                <li time>2004年10月12日 12:32</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div data-role="page" id="cat-page">
+    <div data-role="header">
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>招财猫</h1>
+    </div>
+    <ul data-role="listview" data-theme="a" cat-ul>
+        <li cat><img
+                src="img/cat-grey.png"
+                class="ui-li-icon" data-theme="f">
+            <span title>x</span></li>
+    </ul>
+</div>
+<div data-role="page" id="unconsumes-page">
+    <div data-role="header">
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>未消费码片</h1>
+    </div>
+    <ul data-role="listview" data-theme="a" unconsume-ul>
+        <li><a href="#">
+            <div class="qrcode"></div>
+        </a></li>
+    </ul>
+</div>
+
+<div data-role="page" id="doConsume-page">
+    <div data-role="header">
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>消费码片</h1>
+    </div>
+    <div class="ui-panel">
+        <form method="get">
+            <label for="phone" class="ui-hidden-accessible">手机号：</label>
+            <input type="text" name="phone" id="phone" placeholder="输入手机号" data-clear-btn="true">
+            <label for="verifycode" class="ui-hidden-accessible">验证码：</label>
+            <input type="text" name="verifycode" id="verifycode" placeholder="输入验证码" data-clear-btn="true">
+        </form>
+        <p tips><label>提示:</label><span>该手机号还未注册，请下载<a android href="#">地微app(安卓版)</a>或者<a ios href="#">地微app(苹果版)</a>并注册账号，而后再试</span></p>
+    </div>
+</div>
+</body>
+</html>
