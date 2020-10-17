@@ -91,6 +91,35 @@ $(document).on("pagecreate", "#unconsumes-page", function () {
 
 $(document).on("pagecreate", "#doConsume-page", function () {
     var the = $(this);
+
+    $.getJSON('./ProductDownloadUrl.json', {}, function (data, status) {
+        var obj = eval(data);
+        var span = the.find('p[tips]>span');
+        var a = span.find('>a').first().clone();
+        span.find('>a').remove();
+        for (var key in obj) {
+            var v = obj[key];
+            var ca = a.clone();
+            ca.attr('href', v);
+            ca.attr('os', key);
+            ca.attr('style','display:inline-block;padding-left:0.5em;padding-right:0.5em;');
+            var label = '';
+            switch (key) {
+                case 'android':
+                    label = '(安卓版)';
+                    break;
+                case 'ios':
+                    label = '(苹果版)';
+                    break;
+                default:
+                    label = '(其它版)';
+                    break;
+            }
+            ca.find('>span').html(label);
+            span.append(ca);
+        }
+    });
+
     var phone = the.find('#phone');
     the.find('a.ui-input-clear').on('click', function () {
         phone.removeAttr('readonly');
@@ -139,7 +168,7 @@ $(document).on("pagecreate", "#doConsume-page", function () {
                 phone.val(v);
                 phone.attr('placeholder', '输入手机号');
                 the.find('#verifycode').show();
-            }).error(function (e,f) {
+            }).error(function (e, f) {
                 phone.removeAttr('readonly');
                 phone.val(e.responseText);
                 phone.attr('placeholder', '输入手机号');
@@ -171,17 +200,17 @@ $(document).on("pagecreate", "#doConsume-page", function () {
             'verifyCode': v,
         }, function (data, status) {
             var map = data;
-            if (map.status=='1001') {
+            if (map.status == '1001') {
                 input.val('');
                 input.attr('placeholder', '验证码不正确，请重试...');
                 return;
             }
-            if (map.status=='1002') {
+            if (map.status == '1002') {
                 $('body').empty();
-                $('body').html('<p style="text-align: center;">'+map.message+'</p>');
+                $('body').html('<p style="text-align: center;">' + map.message + '</p>');
                 return;
             }
-            if(map.status!="200"){
+            if (map.status != "200") {
                 input.val('');
                 input.attr('placeholder', '失败，请重试...');
                 return;
@@ -190,4 +219,5 @@ $(document).on("pagecreate", "#doConsume-page", function () {
             $('body').html('<p style="text-align: center;">消费成功，请退出！</p>');
         });
     });
+
 });

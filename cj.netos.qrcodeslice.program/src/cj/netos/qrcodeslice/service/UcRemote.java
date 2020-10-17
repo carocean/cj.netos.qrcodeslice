@@ -210,8 +210,8 @@ public class UcRemote implements IUcRemote, IServiceAfter {
             throw new CircuitException("1002", e);
         }
         Map<String, Object> map = new Gson().fromJson(json, HashMap.class);
-        Double status=Double.parseDouble(map.get("status") + "");
-        if (status>= 400) {
+        Double status = Double.parseDouble(map.get("status") + "");
+        if (status >= 400) {
             throw new CircuitException(status.intValue() + "", map.get("message") + "");
         }
         json = (String) map.get("dataText");
@@ -262,5 +262,43 @@ public class UcRemote implements IUcRemote, IServiceAfter {
         if (Double.parseDouble(map.get("status") + "") >= 400) {
             throw new CircuitException(map.get("status") + "", map.get("message") + "");
         }
+    }
+
+    @Override
+    public Map<String, String> getNewestVersionDownloadUrls(String product) throws CircuitException {
+        String portsProduct = site.getProperty("rhub.ports.uc.product");
+
+        String qs = String.format("product=%s", product);
+        String url = null;
+        url = String.format("%s?%s", portsProduct, qs);
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Rest-Command", "getNewestVersionDownloadUrls")
+                .get()
+                .build();
+        final Call call = client.newCall(request);
+        Response response = null;
+        try {
+            response = call.execute();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        if (response.code() >= 400) {
+            throw new CircuitException("1002", String.format("远程访问失败:%s", response.message()));
+        }
+        String json = null;
+        try {
+            json = response.body().string();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        Map<String, String> map = new Gson().fromJson(json, HashMap.class);
+        Double status = Double.valueOf(String.format("%s", map.get("status")));
+        if (status >= 400) {
+            throw new CircuitException(status.intValue() + "", map.get("message") + "");
+        }
+        json = (String) map.get("dataText");
+        map = new Gson().fromJson(json, HashMap.class);
+        return map;
     }
 }

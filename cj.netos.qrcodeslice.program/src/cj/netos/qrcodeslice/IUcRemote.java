@@ -15,4 +15,6 @@ public interface IUcRemote {
 
     void consumeQrcodeSlice(String person, String qrslice) throws CircuitException;
 
+    Map<String,String> getNewestVersionDownloadUrls(String product) throws CircuitException;
+
 }
