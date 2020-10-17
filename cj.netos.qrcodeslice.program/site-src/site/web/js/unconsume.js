@@ -91,36 +91,6 @@ $(document).on("pagecreate", "#unconsumes-page", function () {
 
 $(document).on("pagecreate", "#doConsume-page", function () {
     var the = $(this);
-
-    $.getJSON('./ProductDownloadUrl.json', {}, function (data, status) {
-        var obj = eval(data);
-        var span = the.find('p[tips]>span');
-        var a = span.find('>a').first().clone();
-        span.find('>a').remove();
-        for (var key in obj) {
-            var v = obj[key];
-            var ca = a.clone();
-            ca.attr('href', v);
-            ca.attr('os', key);
-            ca.attr('style','display:inline-block;padding-left:0.5em;padding-right:0.5em;');
-            // ca.attr('download',);
-            var label = '';
-            switch (key) {
-                case 'android':
-                    label = '(安卓版)';
-                    break;
-                case 'ios':
-                    label = '(苹果版)';
-                    break;
-                default:
-                    label = '(其它版)';
-                    break;
-            }
-            ca.find('>span').html(label);
-            span.append(ca);
-        }
-    });
-
     var phone = the.find('#phone');
     the.find('a.ui-input-clear').on('click', function () {
         phone.removeAttr('readonly');

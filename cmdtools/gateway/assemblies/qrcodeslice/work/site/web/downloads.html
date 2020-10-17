@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="js/downloads.js"></script>
+    <title>点击下载地微应用</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .weixin-tip {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            filter: alpha(opacity=80);
+            height: 100%;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .weixin-tip p {
+            text-align: center;
+            margin-top: 10%;
+            padding: 0 5%;
+        }
+        .dl-panel{
+            width: 80%;
+            height: 100%;
+            margin: 0 auto 0 auto;
+            padding-top: 5em;
+        }
+        .dl-panel>.dl-note{
+            font-size: 1.4em;
+            font-weight: bold;
+            padding-bottom: 1em;
+        }
+        .dl-panel>.dl-header{
+            padding: 1em 0 2em 0;
+            font-size: 2.5em;
+            text-align: left;
+            text-align: center;
+        }
+        .dl-panel>.dl-header>span[name]{
+            display: block;
+        }
+        .dl-panel>.dl-header>img{
+            width: 2em;
+            height: 2em;
+        }
+        .dl-panel>.dl-header>span[crop]{
+            display: block;
+            font-size: 0.4em;
+            color: grey;
+        }
+        .dl-panel >.dl-ul{
+            padding-left: 3em;
+        }
+        .dl-panel >.dl-ul>.dl-li{
+            list-style-type: none;
+            padding: 0.5em 0 0.5em 0;
+        }
+    </style>
+</head>
+<body>
+<div class="weixin-tip">
+    <p>
+        <img src="img/live_weixin.png" alt="微信打开"/>
+    </p>
+</div>
+<script type="text/javascript">
+    $(window).on("load", function () {
+        var winHeight = $(window).height();
+
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        var isWeixin = is_weixin();
+        if (isWeixin) {
+            $(".weixin-tip").css("height", winHeight);
+            $(".weixin-tip").show();
+        }
+    })
+</script>
+<div class="dl-panel">
+    <p class="dl-header"><img src="img/gbera.png"><span name="">地微</span><span crop>郑州节点动力信息科技有限公司出品</span></p>
+    <div class="dl-note"><span>下载</span></div>
+    <ul class="dl-ul">
+        <li class="dl-li"><a href="#">安卓版(morsisid-10.0.0.apk)</a></li>
+        <li class="dl-li"><a href="#">苹果版(morsisid-10.0.0.ipa)</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

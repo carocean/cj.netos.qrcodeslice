@@ -27,7 +27,10 @@ public class SecurityValve implements IAnnotationInputValve {
         if (request instanceof HttpFrame) {
             HttpFrame frame = (HttpFrame) request;
             HttpCircuit circuit = (HttpCircuit) response;
-            if ("/".equals(frame.relativePath())||frame.relativePath().startsWith("/error/")) {//首页是开放的
+            if ("/".equals(frame.relativePath())
+                    ||frame.relativePath().startsWith("/downloads.html")
+                    ||frame.relativePath().startsWith("/ProductDownloadUrl.json")
+                    ||frame.relativePath().startsWith("/error/")) {//首页是开放的
                 pipeline.nextFlow(request, response, this);
                 return;
             }
