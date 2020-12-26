@@ -27,13 +27,17 @@ public class SecurityValve implements IAnnotationInputValve {
         if (request instanceof HttpFrame) {
             HttpFrame frame = (HttpFrame) request;
             HttpCircuit circuit = (HttpCircuit) response;
-            if ("/".equals(frame.relativePath())
-                    ||frame.relativePath().startsWith("/downloads.html")
-                    ||frame.relativePath().startsWith("/ProductDownloadUrl.json")
-                    ||frame.relativePath().startsWith("/error/")) {//首页是开放的
+            String relPath=frame.relativePath();
+
+            if ("/".equals(relPath)
+                    ||relPath.startsWith("/downloads.html")
+                    ||relPath.startsWith("/market.json")
+                    ||relPath.startsWith("/ProductDownloadUrl.json")
+                    ||relPath.startsWith("/error/")) {//首页是开放的
                 pipeline.nextFlow(request, response, this);
                 return;
             }
+
             ISession session = frame.session();
             if (session == null) {
                 pipeline.nextFlow(request, response, this);

@@ -16,9 +16,7 @@ import okhttp3.Response;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @CjService(name = "ucRemote")
@@ -300,5 +298,80 @@ public class UcRemote implements IUcRemote, IServiceAfter {
         json = (String) map.get("dataText");
         map = new Gson().fromJson(json, HashMap.class);
         return map;
+    }
+
+    @Override
+    public Object listOpenedMarket(String product) throws CircuitException {
+        String portsProduct = site.getProperty("rhub.ports.uc.product");
+
+        String qs = String.format("product=%s", product);
+        String url = null;
+        url = String.format("%s?%s", portsProduct, qs);
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Rest-Command", "listOpenedMarket")
+                .get()
+                .build();
+        final Call call = client.newCall(request);
+        Response response = null;
+        try {
+            response = call.execute();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        if (response.code() >= 400) {
+            throw new CircuitException("1002", String.format("远程访问失败:%s", response.message()));
+        }
+        String json = null;
+        try {
+            json = response.body().string();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        Map<String, String> map = new Gson().fromJson(json, HashMap.class);
+        Double status = Double.valueOf(String.format("%s", map.get("status")));
+        if (status >= 400) {
+            throw new CircuitException(status.intValue() + "", map.get("message") + "");
+        }
+        json = (String) map.get("dataText");
+        List list = new Gson().fromJson(json, ArrayList.class);
+        return list;
+    }
+
+    @Override
+    public String getDefaultMarket(String product) throws CircuitException {
+        String portsProduct = site.getProperty("rhub.ports.uc.product");
+
+        String qs = String.format("product=%s", product);
+        String url = null;
+        url = String.format("%s?%s", portsProduct, qs);
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Rest-Command", "getDefaultMarket")
+                .get()
+                .build();
+        final Call call = client.newCall(request);
+        Response response = null;
+        try {
+            response = call.execute();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        if (response.code() >= 400) {
+            throw new CircuitException("1002", String.format("远程访问失败:%s", response.message()));
+        }
+        String json = null;
+        try {
+            json = response.body().string();
+        } catch (IOException e) {
+            throw new CircuitException("1002", e);
+        }
+        Map<String, String> map = new Gson().fromJson(json, HashMap.class);
+        Double status = Double.valueOf(String.format("%s", map.get("status")));
+        if (status >= 400) {
+            throw new CircuitException(status.intValue() + "", map.get("message") + "");
+        }
+        json = (String) map.get("dataText");
+        return new Gson().fromJson(json,String.class);
     }
 }

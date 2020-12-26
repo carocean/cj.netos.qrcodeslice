@@ -17,4 +17,8 @@ public interface IUcRemote {
 
     Map<String,String> getNewestVersionDownloadUrls(String product) throws CircuitException;
 
+    Object listOpenedMarket(String microgeo) throws CircuitException;
+
+    String getDefaultMarket(String microgeo) throws CircuitException;
+
 }

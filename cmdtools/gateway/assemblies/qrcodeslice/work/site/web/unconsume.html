@@ -37,7 +37,7 @@
         <div class="slice-info">
             <ul data-role="listview" data-theme="a">
                 <li totalCats><a href="#cat-page" data-transition="slideup">招财猫<span></span></a></li>
-                <li unconsumeCount><a href="#unconsumes-page">未消费码片
+                <li unconsumeCount><a href="#unconsumes-page">未领取码片
                     <span>赶快抢</span></a>
                 </li>
             </ul>
@@ -54,7 +54,7 @@
 
     <div data-role="footer" data-position="fixed" style="text-align:center;">
         <a href="#doConsume-page"
-           class="ui-btn ui-btn-e ui-corner-all ui-shadow ui-icon-arrow-r ui-btn-icon-left">消费</a>
+           class="ui-btn ui-btn-e ui-corner-all ui-shadow ui-icon-arrow-r ui-btn-icon-left">领取</a>
     </div>
 </div>
 <div data-role="page" id="balance-details">
@@ -90,7 +90,7 @@
 </div>
 <div data-role="page" id="unconsumes-page">
     <div data-role="header">
-        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>未消费码片</h1>
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>未领取码片</h1>
     </div>
     <ul data-role="listview" data-theme="a" unconsume-ul>
         <li><a href="#">
@@ -101,7 +101,7 @@
 
 <div data-role="page" id="doConsume-page">
     <div data-role="header">
-        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>消费码片</h1>
+        <h1><a href="#home" class="ui-btn ui-btn-left ui-corner-all" data-rel="back">←</a>领取码片</h1>
     </div>
     <div class="ui-panel">
         <form method="get">
@@ -110,7 +110,7 @@
             <label for="verifycode" class="ui-hidden-accessible">验证码：</label>
             <input type="text" name="verifycode" id="verifycode" placeholder="输入验证码" data-clear-btn="true">
         </form>
-        <p tips><label>提示:</label><span>该手机号还未注册，请下载<a href="downloads.html">地微app</a>并注册账号，而后再试。</span></p>
+        <p tips><label>提示:</label><span>该手机号还未注册，请下载<a href="downloads.html" target="_blank">地微app</a>并注册账号，而后再试。</span></p>
     </div>
 </div>
 </body>

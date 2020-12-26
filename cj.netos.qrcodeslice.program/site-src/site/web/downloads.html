@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0"/>
     <script src="jquery/jquery.min.js"></script>
     <script src="js/downloads.js"></script>
+    <script src="js/mobile-detect.js"></script>
     <title>点击下载地微应用</title>
     <style type="text/css">
         * {
@@ -39,41 +40,101 @@
             margin-top: 10%;
             padding: 0 5%;
         }
-        .dl-panel{
+
+        .dl-panel {
             width: 80%;
             height: 100%;
             margin: 0 auto 0 auto;
-            padding-top: 5em;
+            padding-top: 0em;
         }
-        .dl-panel>.dl-note{
+
+        .dl-panel > .dl-m-label,
+        .dl-panel > .dl-note {
             font-size: 1.4em;
             font-weight: bold;
             padding-bottom: 1em;
         }
-        .dl-panel>.dl-header{
+
+        .dl-panel > .dl-header {
             padding: 1em 0 2em 0;
             font-size: 2.5em;
             text-align: left;
             text-align: center;
         }
-        .dl-panel>.dl-header>span[name]{
+
+        .dl-panel > .dl-header > span[name] {
             display: block;
         }
-        .dl-panel>.dl-header>img{
+
+        .dl-panel > .dl-header > img {
             width: 2em;
             height: 2em;
         }
-        .dl-panel>.dl-header>span[crop]{
+
+        .dl-panel > .dl-header > span[crop] {
             display: block;
             font-size: 0.4em;
             color: grey;
         }
-        .dl-panel >.dl-ul{
+
+        .dl-panel > .dl-ul {
             padding-left: 3em;
         }
-        .dl-panel >.dl-ul>.dl-li{
+
+        .dl-panel > .dl-ul > .dl-li {
             list-style-type: none;
             padding: 0.5em 0 0.5em 0;
+        }
+
+        .dl-market-box {
+            padding: 0.5em 1em 0.5em 1em;
+            margin-bottom: 0.5em;
+        }
+
+        .dl-market-box > .dl-deliver {
+            margin-top: 0.8em;
+            background: #ececec;
+            height: 1px;
+        }
+
+        .dl-market-box > .dl-install {
+            text-align: center;
+            margin-bottom: 0.1em;
+        }
+        .dl-market-box > div.dl-tips{
+            text-align: center;
+            font-size: 0.8em;
+            color: grey;
+        }
+        .dl-market-box > div.dl-tips > span {
+            color: #2a2a2a;
+            display: inline-block;
+            padding-right: 0.2em;
+            padding-left: 0.2em;
+        }
+
+        .dl-market-box > div.dl-tips> span.dl-brand {
+            color: steelblue;
+        }
+
+        .dl-market-box > .dl-install a {
+            font-size: 1.2em;
+            background: green;
+            color: white;
+            padding: 0.3em 1.8em 0.3em 1.8em;
+            margin-bottom: 0.2em;
+            border-radius:0.2em ;
+            display: inline-block;
+        }
+
+        .dl-market-box > .dl-markets {
+            text-align: center;
+        }
+
+        .dl-market-box > .dl-markets > li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 1em 1em 1em 1em;
         }
     </style>
 </head>
@@ -105,7 +166,19 @@
 </script>
 <div class="dl-panel">
     <p class="dl-header"><img src="img/gbera.png"><span name="">地微</span><span crop>郑州节点动力信息科技有限公司出品</span></p>
-    <div class="dl-note"><span>下载</span></div>
+    <div class="dl-m-label"><span>应用商店</span></div>
+    <div class="dl-market-box">
+        <p class="dl-install"><a href="#">点此安装</a>
+        <div class="dl-tips">当前是<span class="dl-brand">苹果</span>市场</div>
+        </p>
+        <div class="dl-deliver"></div>
+        <div><span style="font-size: 0.8em;font-weight: bold;">其它应用商店</span></div>
+        <ul class="dl-markets">
+            <li><a href="#">市场1</a></li>
+            <li><a href="#">市场2</a></li>
+        </ul>
+    </div>
+    <div class="dl-note"><span>链接下载</span></div>
     <ul class="dl-ul">
         <li class="dl-li"><a href="#">安卓版(morsisid-10.0.0.apk)</a></li>
         <li class="dl-li"><a href="#">苹果版(morsisid-10.0.0.ipa)</a></li>
